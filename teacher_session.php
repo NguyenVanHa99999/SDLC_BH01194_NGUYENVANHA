@@ -70,6 +70,7 @@ $sessions = $stmtSessions->fetchAll(PDO::FETCH_ASSOC);
                         <thead style="background-color: black; color: white;">
                         <th>Student ID</th>
                         <th>Name</th>
+                        <th>Phone</th>
                         <th>Status</th>
                         <th>Remarks</th>
                     </tr>
@@ -105,6 +106,7 @@ $sessions = $stmtSessions->fetchAll(PDO::FETCH_ASSOC);
                                 <tr>
                                     <td>${student.UserID}</td>
                                     <td>${student.FirstName} ${student.LastName}</td>
+                                     <td>${student.Phone || 'N/A'}</td>
                                     <td>${student.StatusID || 'N/A'}</td>
                                     <td>${student.Remarks || 'N/A'}</td>
                                 </tr>
@@ -124,6 +126,7 @@ $sessions = $stmtSessions->fetchAll(PDO::FETCH_ASSOC);
             if (statusID === '3') return 'Late';
             return '';
         }
+        
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

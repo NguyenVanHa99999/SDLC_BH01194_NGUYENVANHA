@@ -15,9 +15,9 @@ if (isset($_GET['sessionID'])) {
     $stmtSession->execute([$sessionID]);
     $session = $stmtSession->fetch(PDO::FETCH_ASSOC);
 
-    // Lấy danh sách sinh viên
+    // Lấy danh sách sinh viên kèm trường Phone
     $queryStudents = "
-        SELECT cs.UserID, u.FirstName, u.LastName, a.StatusID, a.Remarks
+        SELECT cs.UserID, u.FirstName, u.LastName, u.Phone, a.StatusID, a.Remarks
         FROM ClassStudents cs
         INNER JOIN Users u ON cs.UserID = u.UserID
         LEFT JOIN Attendance a ON cs.UserID = a.UserID AND a.SessionID = ?
@@ -26,6 +26,7 @@ if (isset($_GET['sessionID'])) {
     $stmtStudents->execute([$sessionID, $sessionID]);
     $students = $stmtStudents->fetchAll(PDO::FETCH_ASSOC);
 
+    // Trả dữ liệu JSON
     echo json_encode(['session' => $session, 'students' => $students]);
 }
 ?>

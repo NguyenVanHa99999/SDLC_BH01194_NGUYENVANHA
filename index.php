@@ -19,49 +19,75 @@ $username = $_SESSION['Username'] ?? 'User'; // Lấy tên người dùng từ s
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f4f7fc;
-        }
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fc;
+    height: 100vh;
+    overflow-x: hidden; /* Đảm bảo không có thanh cuộn ngang */
+}
 
-        .navbar {
-            background-color: #343a40;
-        }
+.navbar {
+    background-color: #343a40;
+    padding: 10px;
+}
 
-        .navbar-brand img {
-            width: 40px;
-            height: auto;
-        }
+.navbar-brand img {
+    width: 40px;
+    height: auto;
+}
 
-        .sidebar {
-            height: 1000px;
-            background-color: #6c757d;
-            padding: 15px;
-        }
+.sidebar {
+    height: 100vh; /* Đảm bảo sidebar kéo dài toàn màn hình */
+    background-color: #6c757d;
+    padding: 15px;
+    margin: 0; /* Sát cạnh */
+}
 
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
 
-        .sidebar a:hover {
-            background-color: #0056b3;
-        }
+.sidebar a:hover {
+    background-color: #0056b3;
+}
 
-        .content {
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+.content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 0px; /* Xóa bo góc để khung sát cạnh */
+    box-shadow: none; /* Loại bỏ bóng */
+    margin: 0; /* Sát cạnh */
+    height: 100vh; /* Chiều cao toàn màn hình */
+    overflow-y: auto; /* Cuộn nội dung nếu quá dài */
+}
 
-        .logout {
-            margin-top: 20px;
-            text-align: center;
-        }
+.content h4 {
+    margin: 0;
+}
+
+.logout {
+    text-align: center; /* Đặt nội dung trong div ra giữa */
+    margin-top: 20px; /* Tăng khoảng cách phía trên */
+}
+
+.logout a {
+    padding: 10px 20px; /* Tăng padding để nút lớn hơn */
+    font-size: 16px; /* Kích thước chữ lớn hơn */
+    width: 220px; /* Đảm bảo nút có độ rộng vừa nội dung */
+    text-align: center; /* Căn chữ giữa */
+    display: inline-block; /* Đảm bảo width hoạt động đúng */
+}
+
+.container-fluid {
+    padding: 0; /* Xóa padding của container */
+}
+
     </style>
 </head>
 
@@ -80,9 +106,7 @@ $username = $_SESSION['Username'] ?? 'User'; // Lấy tên người dùng từ s
 </nav>
 
 
-            <div class="text-white" style="font-size: 18px;">Welcome, <?= htmlspecialchars($username); ?>!</div>
-        </div>
-    </nav>
+
 
 
     <div class="container-fluid mt-4">
