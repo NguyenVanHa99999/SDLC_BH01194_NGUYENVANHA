@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <table class="table table-bordered">
     <thead>
         <tr>
+            <thead style="background-color: black; color: white;">
             <th>ID</th>
             <th>Username</th>
             <th>Email</th>
