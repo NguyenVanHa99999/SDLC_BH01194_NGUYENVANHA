@@ -1,12 +1,33 @@
 <?php
+
 session_start();
-if (!isset($_SESSION['RoleID'])) {
+if (!isset($_SESSION['UserID'])) {
     header('Location: login.php');
     exit;
 }
 
+include 'db_connection.php'; // File kết nối cơ sở dữ liệu
+
+try {
+    // Lấy thông tin người dùng dựa vào UserID trong session
+    $userID = $_SESSION['UserID'];
+    $stmt = $conn->prepare("SELECT FirstName, LastName FROM Users WHERE UserID = :userID");
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        $username = $user['FirstName'] . ' ' . $user['LastName'];
+    } else {
+        $username = 'Guest'; // Trường hợp không tìm thấy người dùng
+    }
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+    exit;
+}
+
 $roleID = $_SESSION['RoleID']; // RoleID từ cơ sở dữ liệu
-$username = $_SESSION['Username'] ?? 'User'; // Lấy tên người dùng từ session nếu có
+
 ?>
 
 <!DOCTYPE html>
